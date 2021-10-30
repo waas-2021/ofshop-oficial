@@ -24,7 +24,7 @@
     <h3>Resultados: {{ resultadoBsk.count }}</h3>
     <div class="row">
         <div [ngStyle]="{'margin-bottom': '10px'}" class="col-xs-12 col-sm-12 col-md-3 col-lg-3" *ngFor="let elemento of resultadoBsk.products | paginate: { id: 'paginadoProductos', itemsPerPage: resultadoBsk.page_size, currentPage: bskModel.page, totalItems: resultadoBsk.count }">
-            <div class="card card-product h-100">
+            <div class="card card-product" style="border: none;">
                 <a [href]="elemento.image_front_small_url" target="_blank">
                     <img [src]="elemento.image_front_small_url" class="card-img-top" alt="{{elemento.product_name}}"/>
                 </a>
