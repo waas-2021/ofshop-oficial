@@ -41,6 +41,10 @@ export class PaginaCompraProductosComponent implements OnInit {
     private lstorageservicio: LstorageService
     //private rastreo:RastreoProductoService
   ) {
+    
+  }
+
+  ngOnInit(): void {
     this.carrito = this.lstorageservicio.getCarrito();
     console.log(this.carrito);
     this.registro.quantity = 0;
@@ -52,10 +56,6 @@ export class PaginaCompraProductosComponent implements OnInit {
     }
     this.registro.total = this.registro.subtotal + this.registro.envio;
     this.pagoPaypal(String(this.registro.total));
-  }
-
-  ngOnInit(): void {
-    
   }
 
   pagoPaypal = (price:any)=>{
