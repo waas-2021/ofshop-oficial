@@ -7,18 +7,18 @@
     <div class="container">
         <div class="row align-items-start">
             <div class="col">
-            Producto
+            Cantidad de Productos
             </div>
             <div class="col">
-            {{registro.product.product_name}}
+            {{registro.quantity}}
             </div>
         </div>
         <div class="row align-items-center">
             <div class="col">
-            Envío
+            Costo de Envío
             </div>
             <div class="col">
-            $0.0 MXN
+            $ {{registro.envio}} MXN
             </div>
         </div>
         <div class="row align-items-end">
@@ -26,10 +26,10 @@
             Pagas
             </div>
             <div class="col">
-            {{registro.price_f}}
+            $ {{registro.total}} MXN
             </div>
         </div>
-        <br>
+        <!--<br>
         <div class="row align-items-center border border-primary col col-md-6 offset-md-3">
             <div class="col col-md-3">
                 <img style="width:150px" [src]="registro.product.image_front_small_url" class="card-img-top" alt="{{registro.product.product_name}}"/>
@@ -44,7 +44,7 @@
             {{registro.price_f}}
             </div>
         </div>
-        <br>
+        <br>-->
         <!--div class="row align-items-end">
             <div class="col">
                 <a class="btn btn-success"  id="paypal" (click)="pagoPaypal(registro.price)">

@@ -18,7 +18,7 @@ export class LstorageService {
 
   addCarrito(carro: CarritoInterface){
   
-    this.carrito.push( carro);
+    this.carrito.push(carro);
 
     var costo=0;
     for(var i=0; i < this.carrito.length; i++){

@@ -16,6 +16,8 @@ import { CarritoInterface } from 'src/app/interfaces/carrito/carrito-interface';
 
 import { LstorageService } from 'src/app/servicios/carrito/lstorage.service';
 
+import { TotalesInterface } from 'src/app/interfaces/carrito/totales-interface';
+
 @Component({
   selector: 'app-pagina-compra-productos',
   templateUrl: './pagina-compra-productos.component.html',
@@ -23,22 +25,37 @@ import { LstorageService } from 'src/app/servicios/carrito/lstorage.service';
 })
 export class PaginaCompraProductosComponent implements OnInit {
 
-  registro!: ProductoInterface;
+  registro: TotalesInterface = {
+    "quantity": 0,
+    "subtotal": 0,
+    "envio": 0,
+    "total": 0
+  };
   bskModel = new BusquedaProductoModel('');
   carga: boolean = false;
   carrito: CarritoInterface[] = [];
+
 
   constructor(
     private busquedaservicio:BusquedaProductoServicioService,
     private lstorageservicio: LstorageService
     //private rastreo:RastreoProductoService
-  ) { 
-    
+  ) {
+    this.carrito = this.lstorageservicio.getCarrito();
+    console.log(this.carrito);
+    this.registro.quantity = 0;
+    this.registro.subtotal = 0;
+    this.registro.envio = 0;
+    for(var i=0; i < this.carrito.length; i++){
+      this.registro.subtotal += this.carrito[i].subtotal;
+      this.registro.quantity += 1;
+    }
+    this.registro.total = this.registro.subtotal + this.registro.envio;
+    this.pagoPaypal(String(this.registro.total));
   }
 
   ngOnInit(): void {
-    this.carrito = this.lstorageservicio.getCarrito();
-    this.pagoPaypal("50");
+    
   }
 
   pagoPaypal = (price:any)=>{
@@ -53,7 +70,7 @@ export class PaginaCompraProductosComponent implements OnInit {
     })
   }
 
-  sendQuery = () => {
+  /*sendQuery = () => {
     this.busquedaservicio.busqueda(this.bskModel.q).then( (response) => {
       console.log(response);
       response.price = Math.round((((response.code/1000000000000) + 50) + Number.EPSILON) * 100) / 100;
@@ -65,7 +82,7 @@ export class PaginaCompraProductosComponent implements OnInit {
       alert("error: " + error.statusText );
     })
 
-  }
+  }*/
 
   numberWithCommas(x: number):string{
       return x.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
