@@ -11,7 +11,7 @@ export class AppComponent {
   
   constructor(private router: Router) {
     if(!this.loggedIn()) {
-      /*this.router.navigate(['inicio']);
+      /*this.router.navigate(['']);
     } else {*/
       this.router.navigate(['login']);
     }

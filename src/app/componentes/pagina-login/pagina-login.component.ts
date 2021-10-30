@@ -27,7 +27,7 @@ export class PaginaLoginComponent implements OnInit {
         alert("Se ha logueado exitosamente");
         localStorage.setItem('token', JSON.stringify(this.loginForm.value.correo));
         this.loginForm.reset();
-        this.router.navigate(['inicio']);
+        this.router.navigate(['']);
       }
       else{
         alert("Usuario incorrecto");

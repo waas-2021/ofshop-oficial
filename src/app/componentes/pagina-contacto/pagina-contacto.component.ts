@@ -30,7 +30,7 @@ export class PaginaContactoComponent implements OnInit {
         console.log(this.contactoForm.valid);
         //localStorage.setItem('contacto', JSON.stringify(this.contactoForm.value));
         this.contactoForm.reset();
-        this.router.navigate(['inicio']);
+        this.router.navigate(['']);
       }
       else{
         alert("Usuario incorrecto");
