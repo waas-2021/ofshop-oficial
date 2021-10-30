@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="text-center">
+                    <h1>Login</h1>
+                    <h6>Introduzca su correo y contraseña.</h6>
+                </div>
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
+                    <div class="mb-3">
+                        <label for="inputCorreo" class="form-label">Correo electrónico</label>
+                        <input formControlName="correo" type="email" class="form-control" id="inputCorreo" aria-describedby="emailHelp" required [email]="true">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputContrasena" class="form-label">Contraseña</label>
+                        <input formControlName="contra" type="password" class="form-control" id="inputContrasena" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
