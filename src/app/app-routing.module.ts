@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'busqueda', component: PaginaBusquedaProductosComponent },
   { path: 'producto/:id', component: PaginaProductoComponent },
   { path: 'contacto', component: PaginaContactoComponent },
-  { path: 'carrito/:id', component: PaginaCompraProductosComponent },
+  { path: 'carrito', component: PaginaCompraProductosComponent },
   { path: '**', component: PaginaNoEncontradaComponent }
 ];
 

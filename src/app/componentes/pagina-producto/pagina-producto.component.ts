@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { BusquedaProductoServicioService } from 'src/app/servicios/productos/busqueda-producto-servicio.service';
 
 import { ProductoInterface } from 'src/app/interfaces/productos/producto-interface';
 
 import { BusquedaProductoModel } from 'src/app/clases/productos/busqueda-producto-model';
+
+import { LstorageService } from 'src/app/servicios/carrito/lstorage.service';
 
 @Component({
   selector: 'app-pagina-producto',
@@ -20,8 +22,10 @@ export class PaginaProductoComponent implements OnInit {
   carga: boolean = false;
 
   constructor(
-    private ruta:ActivatedRoute,
-    private busquedaservicio:BusquedaProductoServicioService
+  private ruta:ActivatedRoute,
+    private rutar:Router,
+    private busquedaservicio:BusquedaProductoServicioService,
+    private lstorageservicio: LstorageService
   ) { 
     this.ruta.params.subscribe(params=>{
       this.bskModel.q = params['id'];
@@ -49,5 +53,19 @@ export class PaginaProductoComponent implements OnInit {
   numberWithCommas(x: number):string{
       return x.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
+
+  agregarACarrito(){
+ 
+     localStorage.getItem('carrito');
+     
+     this.lstorageservicio.addCarrito({
+       quantity: 1,
+       product: this.registro,
+       subtotal: 1*Number(this.numberWithCommas(this.registro.price)),
+     });
+     console.log(this.lstorageservicio.getCarrito());
+     this.rutar.navigate(['carrito']);
+ 
+   }
 
 }

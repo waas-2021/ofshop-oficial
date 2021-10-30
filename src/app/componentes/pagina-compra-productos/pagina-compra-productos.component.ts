@@ -12,6 +12,10 @@ import {render} from 'creditcardpayments/creditCardPayments';
 
 //import {RastreoProductoService} from '../../servicios/rastreo/rastreo-producto.service';
 
+import { CarritoInterface } from 'src/app/interfaces/carrito/carrito-interface';
+
+import { LstorageService } from 'src/app/servicios/carrito/lstorage.service';
+
 @Component({
   selector: 'app-pagina-compra-productos',
   templateUrl: './pagina-compra-productos.component.html',
@@ -22,29 +26,26 @@ export class PaginaCompraProductosComponent implements OnInit {
   registro!: ProductoInterface;
   bskModel = new BusquedaProductoModel('');
   carga: boolean = false;
+  carrito: CarritoInterface[] = [];
 
   constructor(
-    private ruta:ActivatedRoute,
     private busquedaservicio:BusquedaProductoServicioService,
+    private lstorageservicio: LstorageService
     //private rastreo:RastreoProductoService
   ) { 
-    this.ruta.params.subscribe(params=>{
-      //rastreo.rastrearProducto().subscribe((data)=>{console.log(data)});
-      this.bskModel.q = params['id'];
-      this.sendQuery();
-    });
-    this.pagoPaypal("50");
+    
   }
 
   ngOnInit(): void {
-    
+    this.carrito = this.lstorageservicio.getCarrito();
+    this.pagoPaypal("50");
   }
 
   pagoPaypal = (price:any)=>{
     render({
       id:"#paypal",
       currency:"MXN",
-      value:price,
+      value: price,
       onApprove:(details)=>{
         console.log(details);
         console.log("aprovado");

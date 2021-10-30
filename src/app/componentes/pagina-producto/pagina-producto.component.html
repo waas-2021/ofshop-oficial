@@ -9,7 +9,7 @@
             <br>
             {{registro.price_f}}
         </p>
-        <a class="btn btn-success" [routerLink]="['/carrito',registro.code]">
+        <a type="submit" class="btn btn-success" (click)="agregarACarrito()">
             <i class="bi bi-cart-plus-fill"></i>
             Agregar al carrito
         </a>

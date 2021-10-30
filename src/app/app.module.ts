@@ -21,6 +21,8 @@ import { PaginaRastreoProductoComponent } from './componentes/pagina-rastreo-pro
 
 import {NgxPaginationModule} from 'ngx-pagination';
 
+import { LstorageService } from './servicios/carrito/lstorage.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +43,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     NgxPaginationModule,
     ReactiveFormsModule
   ],
-  providers: [BusquedaProductosServicioService],
+  providers: [BusquedaProductosServicioService, LstorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
