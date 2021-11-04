@@ -4,8 +4,8 @@
         Resumen de tu compra
     </h1>
     <hr>
-    <div class="container">
-        <div class="row align-items-start">
+    <div class="container" style="padding-bottom: 7rem; border: 2px solid white; border-radius: 10px; margin-bottom: 3rem;">
+        <div class="row align-items-start0" style="margin-top: 3rem;">
             <div class="col">
             Cantidad de Productos
             </div>
@@ -23,7 +23,7 @@
         </div>
         <div class="row align-items-end">
             <div class="col">
-            Pagas
+                Pagas
             </div>
             <div class="col">
             $ {{registro.total}} MXN
@@ -32,16 +32,17 @@
         <!--<br>
         <div class="row align-items-center border border-primary col col-md-6 offset-md-3">
             <div class="col col-md-3">
-                <img style="width:150px" [src]="registro.product.image_front_small_url" class="card-img-top" alt="{{registro.product.product_name}}"/>
+                <img style="width:150px" [src]="registro.product.image_front_small_url" class="card-img-top"
+                    alt="{{registro.product.product_name}}" />
             </div>
             <div style="font-size:1.5em" class="col col-md-3">
-            {{registro.product.quantity}}
+                {{registro.product.quantity}}
             </div>
             <div style="font-size:1.5em" class="col col-md-3">
-            {{registro.product.product_name}}
+                {{registro.product.product_name}}
             </div>
             <div style="font-size:1.5em" class="col col-md-3">
-            {{registro.price_f}}
+                {{registro.price_f}}
             </div>
         </div>
         <br>-->
@@ -49,7 +50,7 @@
             <div class="col">
                 <a class="btn btn-success"  id="paypal" (click)="pagoPaypal(registro.price)">
                     <i class="bi bi-cart-plus-fill"></i>
-                    Confirmar tu compra
+                    Confirmarfde tu compra
                 </a>
             </div>
         </div-->
