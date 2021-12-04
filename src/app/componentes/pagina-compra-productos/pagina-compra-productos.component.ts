@@ -51,8 +51,9 @@ export class PaginaCompraProductosComponent implements OnInit {
     this.registro.subtotal = 0;
     this.registro.envio = 0;
     for(var i=0; i < this.carrito.length; i++){
-      this.registro.subtotal += this.carrito[i].subtotal;
-      this.registro.quantity += 1;
+      this.registro.quantity += this.carrito[i].quantity;
+      this.registro.subtotal += this.carrito[i].subtotal*this.carrito[i].quantity;
+      //console.log(this.carrito[i]);
     }
     this.registro.total = this.registro.subtotal + this.registro.envio;
     this.pagoPaypal(String(this.registro.total));
@@ -87,5 +88,86 @@ export class PaginaCompraProductosComponent implements OnInit {
   numberWithCommas(x: number):string{
       return x.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
+
+  menos(x: CarritoInterface, index: number){
+    //console.log(index);
+    /*if(x.quantity!=1){
+      this.carrito[index].quantity = x.quantity-1;
+      this.registro.quantity -= 1;
+    }*/
+    console.log("Disminuyendo cantidad.");
+    //console.log(this.lstorageservicio.getCantidadItems());
+    if(x.quantity>1){
+      this.carrito[index].quantity = this.carrito[index].quantity-1;
+      this.registro.quantity -= 1;
+      this.registro.subtotal -= this.carrito[index].product.price;
+      this.registro.total = this.registro.subtotal + this.registro.envio;
+      
+      /*console.log(this.carrito[index].quantity);
+      console.log(this.registro.quantity );
+      console.log(this.carrito);*/
+      //console.log(cart);
+    }
+    //this.lstorageservicio.getCantidadItems();
+    //localStorage.setItem('carrito2', JSON.stringify(this.carrito));
+    this.lstorageservicio.actualizarCarrito(this.carrito);
+    console.log("Producto disminuido.");
+
+  }
+
+  mas(x: CarritoInterface, index: number){
+    console.log("Incrementando cantidad.");
+ 
+    //var cart = this.lstorageservicio.getCarrito();
+    //var cantidad = this.lstorageservicio.getCantidadItems();
+    //if(cantidad!=1){
+    if(x.quantity>0){
+      this.carrito[index].quantity = this.carrito[index].quantity+1;
+      this.registro.quantity += 1;
+      this.registro.subtotal += this.carrito[index].product.price;
+      this.registro.total = this.registro.subtotal + this.registro.envio;
+      
+     /*console.log(this.carrito[index].quantity);
+      console.log(this.registro.quantity );
+      console.log(this.carrito);*/
+      //console.log(cart);
+    }
+    //this.lstorageservicio.getCantidadItems();
+    //localStorage.setItem('carrito2', JSON.stringify(this.carrito));
+    this.lstorageservicio.actualizarCarrito(this.carrito);
+    console.log("Producto incrementado.");
+  }
+
+  eliminarProducto(index: number){
+    console.log("Eliminando producto del carrito.");
+
+    this.carrito.splice(index, 1 );
+    this.lstorageservicio.actualizarCarrito(this.carrito);
+    this.carrito = this.lstorageservicio.getCarrito();
+    this.registro.quantity = 0;
+    this.registro.subtotal = 0;
+    this.registro.envio = 0;
+    if(this.carrito != null){
+      for(var i=0; i < this.carrito.length; i++){
+        this.registro.quantity += this.carrito[i].quantity;
+        this.registro.subtotal += this.carrito[i].subtotal*this.carrito[i].quantity;
+        //console.log(this.carrito[i]);
+      }
+      this.registro.total = this.registro.subtotal + this.registro.envio;
+    }
+
+    console.log("Producto eliminado del carrito.");
+  }
+
+  
+  vaciarCarrito(){
+    console.log("Vaciando carrito.");
+    this.lstorageservicio.eliminarCarrito();
+    this.registro.quantity = 0;
+    this.registro.subtotal = 0;
+    this.registro.total = 0;
+    this.registro.envio = 0;
+    console.log("Carrito vaciado.");
+  }
 
 }
