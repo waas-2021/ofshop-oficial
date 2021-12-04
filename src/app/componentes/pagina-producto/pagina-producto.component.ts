@@ -58,12 +58,12 @@ export class PaginaProductoComponent implements OnInit {
  
      localStorage.getItem('carrito');
      
-     this.lstorageservicio.addCarrito({
+     this.lstorageservicio.addProducto({
        quantity: 1,
        product: this.registro,
        subtotal: 1*Number(this.numberWithCommas(this.registro.price)),
      });
-     console.log(this.lstorageservicio.getCarrito());
+     //console.log(this.lstorageservicio.getCarrito());
      this.rutar.navigate(['carrito']);
  
    }
