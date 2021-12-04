@@ -1,3 +1,22 @@
+#cart-icon{
+    font-size: 180%;
+}
+
+#badge{
+    /*font-size: .4em;*/
+    /*
+    top: 150%;
+    right: 100%;
+    font-size: 40%;
+    
+    */
+    vertical-align:middle;
+    margin-left:0px;
+    margin-top: -10px;
+    font-size:50%;
+    line-height: 1;
+
+}
 
 .footer-link i {
     vertical-align: -0.09em;

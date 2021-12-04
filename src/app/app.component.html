@@ -2,6 +2,15 @@
   <!-- Navbar content -->
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/">Menú</a>
+    <a class="navbar-brand" routerLink='/carrito'>
+      <i class="bi bi-cart4" id="cart-icon">
+        <span class="position absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="badge" *ngIf="carro()">
+        {{numProductos}}
+        <!--<span class="visually-hidden">Numero de articulos</span>-->
+        </span> 
+      </i>
+    </a>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
