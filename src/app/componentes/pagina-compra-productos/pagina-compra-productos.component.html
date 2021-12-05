@@ -4,6 +4,42 @@
         Resumen de tu compra
     </h1>
     <hr>
+    <div class="d-grid d-md-flex justify-content-md-end">
+        <button type="button" class="btn btn-warning" (click)="vaciarCarrito()" style="margin-right: 20px;"> <i class="bi bi-trash" style="font-style: normal;"> Vaciar carrito</i> </button>
+    </div>
+    <div class="table-responsive" style="margin: 20px; border: 2px solid white; border-radius: 10px; margin-bottom: 3rem; ">
+        <table class="table table-bordered" style="color:#7FB3D5; font-weight: bold;">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio individual</th>
+                    <th>Subtotal</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of carrito; let i = index">
+                    <td>
+                        <div class="producto">
+                            <a href="item.product.product.image_front_small_url"><img [src]="item.product.product.image_front_small_url" alt="Image"></a>
+                            <p> {{item.product.product.product_name}} </p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="qty">
+                            <button type="button" class="btn btn-warning" (click)="menos(item, i)" id="menos"><i class="bi bi-dash-circle-fill"></i></button>
+                            <input type="text" value="{{item.quantity}}" id="qty-box" disabled>
+                            <button type="button" class="btn btn-warning" (click)="mas(item, i)" id="mas"><i class="bi bi-plus-circle-fill"></i></button>
+                        </div>
+                    </td>
+                    <td>${{item.subtotal}}</td>
+                    <td>${{ item.quantity * item.product.price}} </td>
+                    <td> <button type="button" class="btn btn-warning" (click)="eliminarProducto(i)" id="eliminar"> <i class="bi bi-trash"></i> </button> </td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
     <div class="container" style="padding-bottom: 7rem; border: 2px solid white; border-radius: 10px; margin-bottom: 3rem;">
         <div class="row align-items-start0" style="margin-top: 3rem;">
             <div class="col">
