@@ -47,9 +47,10 @@ export class LstorageService {
     var costo=0;
      for(var i=0; i < this.carrito.length; i++){
        costo += this.carrito[i].quantity * this.carrito[i].subtotal;
+       this.carrito[i].subtotal = Number(this.carrito[i].subtotal.toFixed(2));
      }
  
-    return costo;
+    return costo.toFixed(2);
   }
 
   buscarEnCarrito(carro: CarritoInterface){
