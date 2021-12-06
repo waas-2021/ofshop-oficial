@@ -22,6 +22,8 @@ import { PaginaRastreoProductoComponent } from './componentes/pagina-rastreo-pro
 import {NgxPaginationModule} from 'ngx-pagination';
 
 import { LstorageService } from './servicios/carrito/lstorage.service';
+import { PaginaRegistroComponent } from './componentes/pagina-registro/pagina-registro.component';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { LstorageService } from './servicios/carrito/lstorage.service';
     PaginaLoginComponent,
     PaginaContactoComponent,
     PaginaCompraProductosComponent,
-    PaginaRastreoProductoComponent
+    PaginaRastreoProductoComponent,
+    PaginaRegistroComponent
   ],
   imports: [
     BrowserModule,
