@@ -15,6 +15,10 @@
                         <label for="inputContrasena" class="form-label">Contraseña</label>
                         <input formControlName="contra" type="password" class="form-control" id="inputContrasena" required>
                     </div>
+                    <a class="mb-3" [routerLink]="'/login'" id="loginLink">
+                        ¿No tienes una cuenta? Regístrate.
+                    </a>
+                    <br>
                     <button type="submit" class="btn" [disabled]="!loginForm.valid">Login</button>
                 </form>
             </div>
