@@ -56,19 +56,24 @@ export class PaginaCompraProductosComponent implements OnInit {
       //console.log(this.carrito[i]);
     }
     this.registro.total = this.registro.subtotal + this.registro.envio;
-    this.pagoPaypal(String(this.registro.total));
+    console.log("total: "+String(this.registro.total));
+    this.pagoPaypal(this.registro.total, true);
   }
 
-  pagoPaypal = (price:any)=>{
-    render({
-      id:"#paypal",
-      currency:"MXN",
-      value: price,
-      onApprove:(details)=>{
-        console.log(details);
-        console.log("aprovado");
-      }
-    })
+  pagoPaypal = (price:any, isInit:boolean)=>{
+    $("#paypal").html("");
+    if(price > 0) {
+      render({
+        id:"#paypal",
+        currency:"MXN",
+        value: this.numberWithCommas(price),
+        onApprove:(details)=>{
+          console.log("aprovado");
+          console.log(details);
+          console.log("aprovado");
+        }
+      })
+    }
   }
 
   /*sendQuery = () => {
@@ -102,7 +107,8 @@ export class PaginaCompraProductosComponent implements OnInit {
       this.registro.quantity -= 1;
       this.registro.subtotal -= this.carrito[index].product.price;
       this.registro.total = this.registro.subtotal + this.registro.envio;
-      
+      this.registro.subtotal = Number(this.registro.subtotal.toFixed(2));
+      this.registro.total = Number(this.registro.total.toFixed(2));
       /*console.log(this.carrito[index].quantity);
       console.log(this.registro.quantity );
       console.log(this.carrito);*/
@@ -112,7 +118,7 @@ export class PaginaCompraProductosComponent implements OnInit {
     //localStorage.setItem('carrito2', JSON.stringify(this.carrito));
     this.lstorageservicio.actualizarCarrito(this.carrito);
     console.log("Producto disminuido.");
-
+    this.pagoPaypal(this.registro.total, false);
   }
 
   mas(x: CarritoInterface, index: number){
@@ -126,7 +132,8 @@ export class PaginaCompraProductosComponent implements OnInit {
       this.registro.quantity += 1;
       this.registro.subtotal += this.carrito[index].product.price;
       this.registro.total = this.registro.subtotal + this.registro.envio;
-      
+      this.registro.subtotal = Number(this.registro.subtotal.toFixed(2));
+      this.registro.total = Number(this.registro.total.toFixed(2));
      /*console.log(this.carrito[index].quantity);
       console.log(this.registro.quantity );
       console.log(this.carrito);*/
@@ -136,6 +143,7 @@ export class PaginaCompraProductosComponent implements OnInit {
     //localStorage.setItem('carrito2', JSON.stringify(this.carrito));
     this.lstorageservicio.actualizarCarrito(this.carrito);
     console.log("Producto incrementado.");
+    this.pagoPaypal(this.registro.total, false);
   }
 
   eliminarProducto(index: number){
@@ -154,9 +162,11 @@ export class PaginaCompraProductosComponent implements OnInit {
         //console.log(this.carrito[i]);
       }
       this.registro.total = this.registro.subtotal + this.registro.envio;
+      this.registro.total = Number(this.registro.total.toFixed(2));
     }
 
     console.log("Producto eliminado del carrito.");
+    this.pagoPaypal(this.registro.total, false);
   }
 
   
@@ -168,6 +178,7 @@ export class PaginaCompraProductosComponent implements OnInit {
     this.registro.total = 0;
     this.registro.envio = 0;
     console.log("Carrito vaciado.");
+    this.pagoPaypal(this.registro.total, false);
   }
 
 }
